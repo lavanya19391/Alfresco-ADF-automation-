@@ -117,15 +117,6 @@ describe('angularjs homepage QA exercise', function() {
            
            var clickrow= element(by.css('div[data-automation-id="text_'+folderName+'"]'));	
            
-           console.log('Girishhhh');
-           
-           var test= element(by.css('adf-datatable-row[aria-selected="true"]'));
-           
-           
-           
-           test.getAttribute("data-automation-id").then(function (value) {
-        	   console.log('saasdsad '+value);
-           });
            
            clickrow.getAttribute("attribute").then(function (value) {
         	    console.log(value);
