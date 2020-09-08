@@ -8,7 +8,7 @@ describe('angularjs homepage QA exercise', function() {
       var filesUrl       =	'http://qaexercise.envalfresco.com/files';
       var userName		 = 	'guest@example.com';
       var password 		 = 	'Password';
-      var folderName	 = 	'LavanyaTest1234';
+      var folderName	 = 	'Lakshmi1234';
       var existFolderErr = 	"There's already a folder with this name. Try a different name";	
       var uniTimeOut	 = 	10000; 
       
