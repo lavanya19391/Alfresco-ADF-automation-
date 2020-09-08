@@ -115,46 +115,56 @@ describe('angularjs homepage QA exercise', function() {
            
     	 //Select the folder created to delete
            
-           var clickrow= element(by.css('div[data-automation-id="text_'+folderName+'"]'));	
-           
-           
-           clickrow.getAttribute("attribute").then(function (value) {
-        	    console.log(value);
-        	});
-           
-           
-           
-           var options=element(by.css('button[aria-label=Actions]'));
-           var del=element(by.css('button[data-automation-id="DOCUMENT_LIST.ACTIONS.FOLDER.DELETE"]'));
+    	 var clickrow= element(by.css('div[data-automation-id="text_'+folderName+'"]'));	
+         var del=element(by.css('button[data-automation-id="DOCUMENT_LIST.ACTIONS.FOLDER.DELETE"]'));
 
-           browser.wait(until.presenceOf(clickrow), uniTimeOut, "unable to select the created folder row");
-           clickrow.isSelected().then(function(selected){
+         browser.wait(until.presenceOf(clickrow), uniTimeOut, "unable to select the created folder row");
+         
+         clickrow.isSelected().then(function(selected){
             console.log('row selected ');
             if(selected !== true) {
               clickrow.click();
+              
               }
            });
            
-          //Click Delete from Options
-          browser.wait(until.presenceOf(options), uniTimeOut, "Unable to select delete options");
-           options.isSelected().then(function(selected){
-            console.log('options selected');
-            if(selected !== true) {
-              options.click();
-            }
-          });
            
-          browser.wait(until.presenceOf(del), 15000, "Unable to find delete button");
-          
-          del.isSelected().then(function(selected){
-            console.log('deleted ');
-            if(selected !== true) {
-              del.click();
-            }
-          });    
-          
+           
+          //Click Delete from Options
+        	  
+          var optionsButton=element(by.css('adf-datatable-row[aria-selected=true]'));
+          browser.wait(until.presenceOf(optionsButton), uniTimeOut, "Unable to select delete options"); 
+        	  
+          optionsButton.getAttribute("data-automation-id").then(function (text) {
+        	  
+        	  
+        	  var optionsButtonElement = "action_menu_right_"+text.replace("datatable-row-","");
+        	  var options=element(by.css('button[id='+optionsButtonElement+']'));
+        	  
+        	  options.isSelected().then(function(selected){
+           	   
+                  console.log('options selected');
+                  if(selected !== true) {
+                    options.click();
+                    
+                  }
+                  
+                });
+        	  
+              
+           });
+        	  
+           
+          browser.wait(until.presenceOf(del), uniTimeOut, "Unable to find delete button");
             
-       }
+          del.isSelected().then(function(selected){
+              console.log('deleted ');
+              if(selected !== true) {
+                del.click();
+              }
+            });    
+          
+     }
        
   
       //Navigate to settings URL
@@ -177,7 +187,7 @@ describe('angularjs homepage QA exercise', function() {
     	  
     	  this.deletefolder();
     	  
-    	  browser.sleep(10000).then(function(){
+    	  browser.sleep(5000).then(function(){
               console.log('WaitbeforeClose');
               });
       }
